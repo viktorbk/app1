@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>4cd4a78c-3b08-4b1e-8284-e34936550eea</ProjectGuid>
+    <AutoAssignPort>True</AutoAssignPort>
+    <RunInSimulator>False</RunInSimulator>
+    <ApplicationPage>index.html</ApplicationPage>
+    <RootNamespace>Application1</RootNamespace>
+    <Name>Application1.Desktop</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="application1.config.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="application1.shared.config.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\dx.android5.light.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\dx.common.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\dx.contrast.compact.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\dx.contrast.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\dx.dark.compact.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\dx.dark.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\dx.ios7.default.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\dx.light.compact.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\dx.light.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\dx.spa.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\dx.win8.black.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\dx.win8.white.css">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\icons\dxicons.eot">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\icons\dxicons.ttf">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\icons\dxicons.woff">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\icons\dxiconsios.eot">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\icons\dxiconsios.ttf">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="css\icons\dxiconsios.woff">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="data\db.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="images\logo.png">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="index.html" />
+    <Content Include="index.css" />
+    <Content Include="index.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\dx.all.debug.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\dx.all.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\globalize.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\jquery-1.11.2.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\jquery-2.1.3.min.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\knockout-3.3.0.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\localization\dx.all.de.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\localization\dx.all.ja.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="js\localization\dx.all.ru.js">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="layouts\Desktop\DesktopLayout.css" />
+    <Content Include="layouts\Desktop\DesktopLayout.html" />
+    <Content Include="layouts\Desktop\DesktopLayout.js" />
+    <Content Include="views\about.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\blank.html">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="views\readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="css\" />
+    <Folder Include="css\icons\" />
+    <Folder Include="data\" />
+    <Folder Include="images\" />
+    <Folder Include="js\" />
+    <Folder Include="js\localization\" />
+    <Folder Include="layouts\" />
+    <Folder Include="layouts\Desktop\" />
+    <Folder Include="views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Application1.Shared\Application1.Shared.dxjsproj">
+      <Name>Application1.Shared</Name>
+      <Project>{510bcdb9-3069-4678-a5c3-e9cf6f59f53d}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <Target Name="ResolveReferences">
+    <Message Text="Copying references to output dir..." Importance="high" />
+    <MSBuild Targets="Build" Projects="@(ProjectReference)" Properties="OutputPath=$([System.IO.Path]::GetFullPath('$(OutputPath)'))">
+    </MSBuild>
+  </Target>
+  <Target Name="CopyFilesToOutputDirectory">
+    <Message Text="Copying files to output dir..." Importance="high" />
+    <Copy SourceFiles="@(Content)" DestinationFiles="@(Content->'$(OutputPath)%(RelativeDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(GeneratedJavascript->'%(Identity)')" DestinationFiles="@(GeneratedJavascript-&gt;'%(Identity)'-&gt;'$(OutputPath)%(RelativeDir)%(Filename)%(Extension)')" />
+  </Target>
+  <Target Name="CoreCompile">
+    <!--<Message Text="'$(MSBuildToolsPath)'"></Message>-->
+    <!--<Message Text="'$(BuildingProject)'"></Message>-->
+    <!--<Message Text="Build JSProject '$(MSBuildProjectFile)':" Importance="high"></Message>-->
+    <!--<Message Text="Finished Build JSProject '$(MSBuildProjectFile)'." Importance="high"></Message>-->
+  </Target>
+  <Target Name="CreateManifestResourceNames" Condition="'@(ResxWithNoCulture)@(ResxWithCulture)@(NonResxWithNoCulture)@(NonResxWithCulture)'!=''" />
+  <Target Name="Clean">
+    <!--
+    <Message Text="Cleaning Output files..." Importance="high" />
+    <Delete Files="@([System.IO.Path]::GetFullPath('$(OutputPath)'))" />
+    -->
+    <Message Text="Cleaning Output dir ($([System.IO.Path]::GetFullPath('$(OutputPath)')))..." Importance="high" />
+    <RemoveDir Directories="$([System.IO.Path]::GetFullPath('$(OutputPath)'))" />
+  </Target>
+</Project>
